@@ -1,0 +1,55 @@
+<div class="table-responsive mt-3 shadow-sm rounded-4 bg-white p-3">
+  <table class="table align-middle table-hover mb-0">
+    <thead class="text-center" style="background-color: #f7e9ff; color: #5a2a91;">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Categoría</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody class="text-center">
+      @if (productos.length === 0) {
+        <tr>
+          <td colspan="7" class="text-muted py-4">No hay productos registrados</td>
+        </tr>
+      }
+
+      @for (producto of productos; track producto.id) {
+        <tr>
+          <td class="fw-semibold text-secondary">{{ producto.id }}</td>
+          <td class="fw-semibold">{{ producto.name }}</td>
+          <td class="text-muted">{{ producto.description || '—' }}</td>
+          <td class="fw-semibold text-success">
+            {{ producto.price ? ('₡' + producto.price) : 'N/A' }}
+          </td>
+          <td>{{ producto.stock ?? 'N/A' }}</td>
+          <td class="text-primary">{{ producto.categoria?.name || 'N/A' }}</td>
+          <td>
+            <button
+              (click)="callEditMethod.emit(producto)"
+              type="button"
+              class="btn btn-sm me-2 text-white fw-semibold shadow-sm"
+              style="background-color: #b48cf0; border: none;">
+              Editar
+            </button>
+
+            @if (areActionsAvailable) {
+              <button
+                (click)="callDeleteMethod.emit(producto)"
+                type="button"
+                class="btn btn-sm text-white fw-semibold shadow-sm"
+                style="background-color: #ff6b81; border: none;">
+                Eliminar
+              </button>
+            }
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

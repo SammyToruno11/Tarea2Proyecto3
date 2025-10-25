@@ -1,0 +1,75 @@
+<form [formGroup]="userForm" class="p-4 rounded shadow-sm bg-white">
+  <div class="mb-4 border-bottom pb-2">
+    <h2 class="fw-bold text-black mb-0">Añadir Usuario</h2>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label fw-semibold" for="email">Correo Electrónico</label>
+    <input
+      id="email"
+      formControlName="email"
+      type="email"
+      class="form-control form-control-lg rounded-3 border-secondary-subtle shadow-sm"
+    />
+    @if (userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)) {
+      <p class="text-danger mt-1">Correo electrónico es requerido</p>
+    }
+    @if (userForm.controls['email'].errors?.['email'] && (userForm.controls['email'].dirty || userForm.controls['email'].touched)) {
+      <p class="text-danger mt-1">Correo electrónico inválido</p>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label fw-semibold" for="name">Nombre</label>
+    <input
+      id="name"
+      formControlName="name"
+      type="text"
+      class="form-control form-control-lg rounded-3 border-secondary-subtle shadow-sm"
+    />
+    @if (userForm.controls['name'].invalid && (userForm.controls['name'].dirty || userForm.controls['name'].touched)) {
+      <p class="text-danger mt-1">El nombre es requerido</p>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label fw-semibold" for="lastname">Apellido</label>
+    <input
+      id="lastname"
+      formControlName="lastname"
+      type="text"
+      class="form-control form-control-lg rounded-3 border-secondary-subtle shadow-sm"
+    />
+    @if (userForm.controls['lastname'].invalid && (userForm.controls['lastname'].dirty || userForm.controls['lastname'].touched)) {
+      <p class="text-danger mt-1">El apellido es requerido</p>
+    }
+  </div>
+
+  <div class="mb-4">
+    <label class="form-label fw-semibold" for="password">Contraseña</label>
+    <input
+      id="password"
+      formControlName="password"
+      type="password"
+      class="form-control form-control-lg rounded-3 border-secondary-subtle shadow-sm"
+    />
+    @if (userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password'].touched)) {
+      <p class="text-danger mt-1">La contraseña es requerida</p>
+    }
+  </div>
+
+  <div class="d-flex justify-content-end mt-4">
+    <button
+      (click)="callSave()"
+      [disabled]="userForm.invalid"
+      type="button"
+      class="btn text-white fw-semibold px-5 py-2 rounded-pill border-0 shadow-sm"
+      [ngStyle]="{
+        'background-color': '#ff69b4',
+        'opacity': userForm.invalid ? '0.6' : '1'
+      }"
+    >
+      Guardar
+    </button>
+  </div>
+</form>

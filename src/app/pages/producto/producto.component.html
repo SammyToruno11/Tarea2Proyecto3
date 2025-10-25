@@ -1,0 +1,52 @@
+@defer {
+  <div class="container-fluid p-4">
+    <div class="row mb-4">
+      <div class="col-12">
+        <h1>Administrar Productos</h1>
+      </div>
+    </div>
+
+ 
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <app-producto-form
+              [form]="form"
+              [categorias]="categoriaService.categorias$()"
+              (callSaveMethod)="guardar($event)">
+            </app-producto-form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title mb-3">Lista de Productos</h3>
+
+            <app-productos-tabla
+              [productos]="productoService.productos$()"
+              [areActionsAvailable]="true"
+              (callEditMethod)="editarProducto($event)"
+              (callDeleteMethod)="eliminar($event)">
+            </app-productos-tabla>
+
+            @if (productoService.busqueda.totalPages && productoService.busqueda.totalPages > 1) {
+              <div class="mt-3">
+                <app-pagination
+                  [service]="productoService">
+                </app-pagination>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+} @loading (minimum 1.5s) {
+  <app-loader />
+}

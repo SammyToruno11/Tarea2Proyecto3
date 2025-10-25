@@ -1,0 +1,44 @@
+<div class="table-container table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Correo Electrónico</th>
+        <th scope="col">Creado</th>
+        <th scope="col">Actualizado</th>
+        <th class="text-center" scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of users; track item.id) {
+        <tr>
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.name}}</td>
+          <td>{{item.lastname}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+          <td>{{item.updatedAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+          <td>
+            <button (click)="callModalAction.emit(item);" class="btn btn-sm me-2 text-white fw-semibold shadow-sm"
+              style="background-color: #b48cf0; border: none;">
+              Editar
+            </button>
+            <button (click)="callDeleteAction.emit(item)" class="btn btn-sm text-white fw-semibold shadow-sm"
+                style="background-color: #ff6b81; border: none;">
+                Eliminar
+              </button>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="7">
+            <div class="d-flex justify-content-center align-items-center w-100">
+              <p class="mb-0">No hay usuarios registrados</p>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
