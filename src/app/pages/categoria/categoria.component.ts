@@ -22,14 +22,13 @@ import { LoaderComponent } from '../../components/loader/loader.component';
   styleUrls: ['./categoria.component.scss']
 })
 export class CategoriaComponent implements OnInit {
-  // 🧩 Inyecciones
+
   public categoriaService = inject(CategoriaService);
   public fb = inject(FormBuilder);
 
-  // 🔹 Estado de edición
+
   public isEdit = false;
 
-  // 🔹 Formulario reactivo
   public form = this.fb.group({
     id: [0],
     name: ['', Validators.required],
@@ -37,7 +36,7 @@ export class CategoriaComponent implements OnInit {
   });
 
   constructor() {
-    // 👀 Efecto para depurar cambios
+
     effect(() =>
       console.log('📦 Categorías actualizadas:', this.categoriaService.categorias$())
     );

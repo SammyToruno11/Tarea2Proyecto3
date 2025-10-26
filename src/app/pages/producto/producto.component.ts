@@ -31,7 +31,7 @@ export class ProductoComponent {
     description: [''],
     price: [0],
     stock: [0],
-    categoria: [null as ICategoria | null, Validators.required] // ✅ cambio clave
+    categoria: [null as ICategoria | null, Validators.required] 
   });
 
   constructor() {
@@ -56,7 +56,7 @@ export class ProductoComponent {
       description: item.description,
       price: item.price,
       stock: item.stock,
-      categoria: item.categoria // ✅ ahora envía el objeto completo
+      categoria: item.categoria
     };
 
     if (item.id) {
@@ -75,7 +75,7 @@ export class ProductoComponent {
       description: producto.description,
       price: producto.price,
       stock: producto.stock,
-      categoria: producto.categoria ?? null // ✅ carga el objeto completo
+      categoria: producto.categoria ?? null 
     });
   }
 

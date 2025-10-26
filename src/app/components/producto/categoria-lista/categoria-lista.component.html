@@ -9,16 +9,21 @@
         </div>
 
         <div class="d-flex justify-content-start align-items-center gap-2 mt-auto">
-          <button class="btn btn-sm me-2 text-white fw-semibold shadow-sm"
-              style="background-color: #b48cf0; border: none;">
-              Editar
-            </button>
+          <button
+            class="btn btn-sm me-2 text-white fw-semibold shadow-sm"
+            style="background-color: #b48cf0; border: none;"
+            (click)="callEditMethod.emit(item)"
+          >
+            Editar
+          </button>
 
           <button
             class="btn btn-sm me-2 text-white fw-semibold shadow-sm"
-              style="background-color: #ff6b81; border: none;">
-              Eliminar
-            </button>
+            style="background-color: #ff6b81; border: none;"
+            (click)="callDeleteMethod.emit(item)"
+          >
+            Eliminar
+          </button>
         </div>
 
       </div>
